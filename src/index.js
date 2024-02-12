@@ -3,12 +3,27 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ThemeContextProvider from './contexts/Theme';
+import TasksContextProvider from './contexts/Tasks';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+//on insert une valeur par défaut au context theme
+//cette valeur par défaut contient le thème et la méthode qui permet de mettre à jour le thème
+/*const value = {
+  theme: 'light',
+  toogleTheme: () => {
+    value.theme = 'dark';
+  }
+}*/
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  /*<React.StrictMode>*/
+  <ThemeContextProvider>
+    <TasksContextProvider>
+      <App />
+    </TasksContextProvider>
+  </ThemeContextProvider>
+  /*</React.StrictMode>*/
 );
 
 // If you want to start measuring performance in your app, pass a function
