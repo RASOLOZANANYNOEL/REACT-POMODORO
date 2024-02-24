@@ -17,9 +17,11 @@ const style = {
 
 function TextareaField({ placeholder, labelTitle, value, onChange, error, name }) {
     const id = useId();
+
     const handleChange = (event) => {
         onChange(event.target.value);
     }
+
     return (
         <div style={style.inputGroup}>
             <label htmlFor={id}>{labelTitle}</label>

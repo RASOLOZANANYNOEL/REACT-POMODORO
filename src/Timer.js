@@ -1,18 +1,18 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useState } from "react";
 //import Button from "./Button";
 import ClockDisplay from "./ClockDisplay";
-import style from './Timer.module.css';
-import TimerText from "./TimerText";
+import { TasksContext } from "./contexts/Tasks";
 import useTimer from "./hooks/useTimer";
 import TaskForm from "./TaskForm";
-import { TasksContext } from "./contexts/Tasks";
-//import { Component } from "react";
+import style from './Timer.module.css';
+import TimerText from "./TimerText";
+
 
 //let timerId;
 
 function Timer() {
 
-    const textRef = useRef(null);
+    //const textRef = useRef(null);
 
     const [isTimerStarted, setIsTimerStarted] = useState(false);
     const { time, startTimer, stopTimer } = useTimer(); // interval d'1 sec . (2000)= 2sec
@@ -20,9 +20,9 @@ function Timer() {
     const { addTask } = useContext(TasksContext);
 
     //permet d'afficher ref dans l'élément parent
-    useEffect(() => {
+    /*useEffect(() => {
         console.log('REF DEPUIS TIMER >>>', textRef);
-    }, []);
+    }, []);*/
 
     const handleStartTimer = ({ title, description }) => {
         //console.log('CLICK!!!!');
@@ -54,7 +54,7 @@ function Timer() {
         <>
             <ClockDisplay time={time} className={style['clock-timer']} />
             <TaskForm isTimerStarted={isTimerStarted} onSubmit={handleStartTimer} />
-            <TimerText isTimerStarted={isTimerStarted} ref={textRef} />
+            <TimerText isTimerStarted={isTimerStarted} /*ref={textRef}*/ />
         </>
     );
 }

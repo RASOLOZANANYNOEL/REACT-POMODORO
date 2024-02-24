@@ -1,7 +1,6 @@
 import { useReducer, createContext } from "react";
 
 const TasksContext = createContext({
-    //tasks: [],
     tasksData: {
         tasks: [],
         count: 0,
@@ -44,7 +43,7 @@ const tasksReducer = (state, action) => {
 };
 
 const TasksContextProvider = ({ children }) => {
-    /*const [tasks, setTasks] = useState([]);*/
+    /*const [tasks, setTasks] = useState([]);*/ // utilisation de useState sinon si le context est simple
 
     //utilisation de useReducer
     const [tasksData, dispatchTasks] = useReducer(tasksReducer, INITIAL_TASKS);// usereducer attend 2 arguments

@@ -1,9 +1,10 @@
 import Timer from "./Timer";
-import TimersTable from "./TimersTable";
+//import TimersTable from "./TimersTable";
 import style from './App.module.css';
-import { useContext } from "react";
+import { Suspense, lazy, useContext } from "react";
 import useTimeParser from "./hooks/useTimeParser";
 import { ThemeContext } from "./contexts/Theme"; // n'est plus exporté par défaut d'ou les accolades
+
 
 
 //import { Component } from "react";
@@ -22,6 +23,21 @@ import { ThemeContext } from "./contexts/Theme"; // n'est plus exporté par déf
   return `${hDisplay}:${mDisplay}:${sDisplay}`;
 
 }*/
+
+//lazy loading permet de mettre en attente avant affichage du résultat
+const TimersTable = lazy(() => import('./TimersTable'));
+
+//exemple on met en suspense la visualisation de la table pendant 2 secondes
+/*const TimersTable = lazy(() => {
+  return import('./TimersTable')
+    .then(module => {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve(module);
+        }, 2000);
+      })
+    })
+});*/
 
 function App() {
 
@@ -52,7 +68,9 @@ function App() {
       <h1 className={style['main-title']}>Pomodoro Timer</h1>
       <button onClick={toggleTheme}>Toggle to {theme === 'light' ? 'dark' : 'light'}</button>
       <Timer />
-      <TimersTable onDisplayTimerDetails={displayTimerDetails} />
+      <Suspense fallback={'Loading...'}>
+        <TimersTable onDisplayTimerDetails={displayTimerDetails} />
+      </Suspense>
     </div>
 
   );

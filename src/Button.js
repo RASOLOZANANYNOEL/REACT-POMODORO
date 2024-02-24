@@ -3,7 +3,7 @@ import style from './Button.module.css';
 
 function Button({ isTimerStarted, onClick, type = "button" }) {
 
-    console.log('RENDER BTN', onClick);
+    //console.log('RENDER BTN', onClick);
 
     return (
         <button className={`${style['clock-btn']} ${style[`clock-btn-${isTimerStarted ? 'stop' : 'start'}`]}`}
@@ -12,8 +12,6 @@ function Button({ isTimerStarted, onClick, type = "button" }) {
         >
             {isTimerStarted ? 'Stop' : 'Start'}
         </button>
-
-
     );
 }
 

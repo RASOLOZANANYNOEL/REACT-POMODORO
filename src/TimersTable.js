@@ -1,33 +1,40 @@
 //import { Component } from "react";
-import { useContext, useEffect, useRef } from 'react';
-import ClockDisplay from './ClockDisplay';
-import style from './TimersTable.module.css';
+import { useState, useContext } from 'react';
 import { TasksContext } from './contexts/Tasks';
+import TaskRow from './TaskRow';
+import style from './TimersTable.module.css';
+//import ClockDisplay from './ClockDisplay';
 
 
 function TimersTable(props) {
 
-    const timersRef = useRef([]); //useRef avec un valeur initial un tableau vide
+    /*const timersRef = useRef([]); //useRef avec un valeur initial un tableau vide*/
+
+    const [check, setCheck] = useState(false);
 
     const { tasksData, removeTask } = useContext(TasksContext)
     // addTimerRef permet de rajouter à chaque élément une référence
-    const addTimerRef = (element) => {
+    /*const addTimerRef = (element) => {
         console.log(element);
         //si timersRef.current existe et que timersRef.current n'inclus pas l'élément et que element existe
         if (timersRef.current && !timersRef.current.includes(element) && element) {
             //alors on va push l'élément
             timersRef.current.push(element)
         }
-    }
+    }*/
 
-    useEffect(() => {
-        console.log(timersRef.current);
-    }, []);
+    /*useEffect(() => {
+        //console.log(timersRef.current);
+    }, []);*/
 
 
     return (
         <>
             <h3>{tasksData.count} Task{tasksData.count > 1 ? 's' : ''} registered</h3>
+            <div>
+                <input type="checkbox" id="check" onChange={e => setCheck(e.target.checked)} />
+                <label htmlFor="check">Check</label>
+            </div>
             <table className={style['timers-table']}>
                 <thead>
                     <tr>
@@ -36,19 +43,12 @@ function TimersTable(props) {
                         <th>Description</th>
                         <th>Time</th>
                         <th>Actions</th>
-
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        tasksData.tasks.map((timer, index) => (
-                            <tr ref={addTimerRef} key={Date.parse(timer.date) - index}>
-                                <td>{timer.date.toLocaleDateString()}  at {timer.date.toLocaleTimeString()} </td>
-                                <td>{timer.title}</td>
-                                <td>{timer.description}</td>
-                                <td> <ClockDisplay time={timer.time} /> </td>
-                                <td><button onClick={() => removeTask(index)}>Delete</button></td>
-                            </tr>
+                        tasksData.tasks.map((task, index) => (
+                            <TaskRow task={task} index={index} removeTask={removeTask} key={Date.parse(task.date) - index} />
                         ))
                     }
                 </tbody>

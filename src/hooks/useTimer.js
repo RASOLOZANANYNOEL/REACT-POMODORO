@@ -4,7 +4,7 @@ let timerId = null;
 
 function useTimer(step = 1000) {
 
-    const [time, setTime] = useState(0);;
+    const [time, setTime] = useState(0);
 
     const startTimer = () => {
         if (!timerId) {
