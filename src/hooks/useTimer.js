@@ -1,10 +1,18 @@
-import { useState } from 'react';
+import { useDebugValue, useState } from 'react';
 
 let timerId = null;
 
 function useTimer(step = 1000) {
 
     const [time, setTime] = useState(0);
+
+    //permet de voir dans react dev tool
+    useDebugValue(timerId, (timerId) => {
+        return {
+            name: 'useTimer',
+            timerId: timerId ? 'IS STARTED' : 'NOT STARTED',
+        };
+    });
 
     const startTimer = () => {
         if (!timerId) {
