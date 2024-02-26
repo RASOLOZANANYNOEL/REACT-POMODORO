@@ -102,8 +102,6 @@ export default App;
     this.setState({
       timers: newTimers,
     });*/
-
-
 /* }*/
 
 /*render() {
