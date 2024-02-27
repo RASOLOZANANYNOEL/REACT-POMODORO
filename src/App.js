@@ -10,19 +10,6 @@ import { ThemeContext } from "./contexts/Theme"; // n'est plus exporté par déf
 //import { Component } from "react";
 //const { Component } = require("react");
 
-/*function secondsToHms(timeInSeconds) {
-  timeInSeconds = Number(timeInSeconds);
-  const h = Math.floor(timeInSeconds / 3600);
-  const m = Math.floor(timeInSeconds % 3600 / 60);
-  const s = Math.floor(timeInSeconds % 3600 % 60);
-
-  const hDisplay = h < 10 ? '0' + h : h;
-  const mDisplay = m < 10 ? '0' + m : m;
-  const sDisplay = s < 10 ? '0' + s : s;
-
-  return `${hDisplay}:${mDisplay}:${sDisplay}`;
-
-}*/
 
 //lazy loading permet de mettre en attente avant affichage du résultat
 const TimersTable = lazy(() => import('./TimersTable'));
